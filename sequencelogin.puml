@@ -1,0 +1,16 @@
+@startuml
+title Sequence Diagram - Login Flow
+
+actor User
+participant Browser
+participant FlaskApp
+participant MongoDB
+
+User -> Browser : Open /uncompleted
+Browser -> FlaskApp : GET /uncompleted
+FlaskApp -> MongoDB : todos.find({"done": "no"})
+MongoDB --> FlaskApp : List of uncompleted tasks
+FlaskApp --> Browser : Render index.html with tasks
+Browser --> User : Tampilkan halaman to-do
+
+@enduml

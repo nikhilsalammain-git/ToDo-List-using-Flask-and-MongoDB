@@ -1,0 +1,36 @@
+@startuml
+title Class Diagram - Flask ToDo App
+
+class TodoApp {
+  - db: MongoClient
+  - todos: Collection
+  - title: str
+  - heading: str
+
+  + redirect_url()
+  + lists()
+  + tasks()
+  + completed()
+  + done()
+  + action()
+  + remove()
+  + update()
+  + action3()
+  + search()
+  + about()
+}
+
+class Flask {
+}
+
+class MongoClient {
+  + insert_one()
+  + find()
+  + update_one()
+  + delete_one()
+}
+
+TodoApp ..> Flask : uses
+TodoApp ..> MongoClient : uses
+
+@enduml

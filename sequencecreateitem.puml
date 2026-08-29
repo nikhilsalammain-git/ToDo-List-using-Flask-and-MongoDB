@@ -1,0 +1,21 @@
+@startuml
+title Sequence Diagram - Create Task
+
+actor User
+participant Browser
+participant FlaskApp
+participant MongoDB
+
+User -> Browser : Isi form to-do
+User -> Browser : Klik tombol Submit
+Browser -> FlaskApp : POST /action {name, desc, date, pr}
+FlaskApp -> MongoDB : todos.insert_one({...})
+MongoDB --> FlaskApp : OK
+FlaskApp --> Browser : Redirect ke /list
+Browser -> FlaskApp : GET /list
+FlaskApp -> MongoDB : todos.find()
+MongoDB --> FlaskApp : All tasks
+FlaskApp --> Browser : Render index.html
+Browser --> User : Tampilkan halaman to-do
+
+@enduml
